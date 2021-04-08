@@ -1,0 +1,11 @@
+C:\Users\koder\Documents\Projects\MathString\TestProject\obj\Debug\netcoreapp3.1\TestProject.csprojAssemblyReference.cache
+C:\Users\koder\Documents\Projects\MathString\TestProject\obj\Debug\netcoreapp3.1\TestProject.AssemblyInfoInputs.cache
+C:\Users\koder\Documents\Projects\MathString\TestProject\obj\Debug\netcoreapp3.1\TestProject.AssemblyInfo.cs
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.exe
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.deps.json
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.runtimeconfig.json
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.runtimeconfig.dev.json
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.dll
+C:\Users\koder\Documents\Projects\MathString\TestProject\bin\Debug\netcoreapp3.1\TestProject.pdb
+C:\Users\koder\Documents\Projects\MathString\TestProject\obj\Debug\netcoreapp3.1\TestProject.dll
+C:\Users\koder\Documents\Projects\MathString\TestProject\obj\Debug\netcoreapp3.1\TestProject.pdb

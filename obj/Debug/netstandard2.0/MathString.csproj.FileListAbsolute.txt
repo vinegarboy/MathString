@@ -1,0 +1,8 @@
+C:\Users\koder\Documents\Projects\MathString\bin\Debug\netstandard2.0\MathString.deps.json
+C:\Users\koder\Documents\Projects\MathString\bin\Debug\netstandard2.0\MathString.dll
+C:\Users\koder\Documents\Projects\MathString\bin\Debug\netstandard2.0\MathString.pdb
+C:\Users\koder\Documents\Projects\MathString\obj\Debug\netstandard2.0\MathString.csprojAssemblyReference.cache
+C:\Users\koder\Documents\Projects\MathString\obj\Debug\netstandard2.0\MathString.AssemblyInfoInputs.cache
+C:\Users\koder\Documents\Projects\MathString\obj\Debug\netstandard2.0\MathString.AssemblyInfo.cs
+C:\Users\koder\Documents\Projects\MathString\obj\Debug\netstandard2.0\MathString.dll
+C:\Users\koder\Documents\Projects\MathString\obj\Debug\netstandard2.0\MathString.pdb

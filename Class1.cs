@@ -289,26 +289,20 @@ namespace MathString
             Array.Reverse(d1);
             Array.Reverse(d2);
             int c=0;
-            int[] date3 = new int[d1.Length*d2.Length];
+            string[] date3 = new string[d1.Length*d2.Length];
+            string gx ="";
             for(int i=0;i<d1.Length;i++){
                 for(int b = 0;b<d2.Length;b++){
-                    date3[c] = Convert.ToInt32(d1[i].ToString())*Convert.ToInt32(d2[b].ToString());
+                    gx="";
+                    for(int g=0;g<i+b;g++){
+                        gx+="0";
+                    }
+                    date3[c] = (Convert.ToInt32(d1[i].ToString())*Convert.ToInt32(d2[b].ToString())).ToString()+gx;
                     c++;
                 }
             }
-            string aten;
-            int g=0,x=0;
             for(int i=0;i<date3.Length;i++){
-                aten = "";
-                for(int d=0;d<g;d++){
-                    aten +="0";
-                }
-                value = this.Add(value,date3[i].ToString()+aten);
-                x++;
-                if(x>=d1.Length-1){
-                    x=0;
-                    g++;
-                }
+                value = this.Add(value,date3[i]);
             }
             return value;
         }

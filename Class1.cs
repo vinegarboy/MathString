@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -283,43 +284,31 @@ namespace MathString
             return value;
         }
         public string Multiplication(string date1,string date2){
-            Calculation ca = new Calculation();
-            string value="";
-            char[] _d1 = date1.ToCharArray(),_d2 =date2.ToCharArray();
-            char[] d1 = new char[date1.Length],d2 = new char[date2.Length];
-            for(int i = _d1.Length-1;i>=0;i--){
-                d1[(_d1.Length-1)-i] = _d1[i];
-            }
-            for(int i = _d2.Length-1;i>=0;i--){
-                d2[(_d2.Length-1)-i] = _d2[i];
-            }
-            List<string> d3 = new List<string>();
-            string z = "";
-            for(int i =0;i<d2.Length;i++){
-                z="";
-                for(int p = 0;p<i;p++){
-                    z+="0";
+            char[] d1 = date1.ToCharArray(),d2 = date2.ToCharArray();
+            string value="0";
+            Array.Reverse(d1);
+            Array.Reverse(d2);
+            int c=0;
+            int[] date3 = new int[d1.Length*d2.Length];
+            for(int i=0;i<d1.Length;i++){
+                for(int b = 0;b<d2.Length;b++){
+                    date3[c] = Convert.ToInt32(d1[i].ToString())*Convert.ToInt32(d2[b].ToString());
+                    c++;
                 }
-                List<string> d4 = new List<string>();
-                string az = "";
-                for(int v =0;v<d1.Length;v++){
-                    for(int p = 0;p<i;p++){
-                        az+="0";
-                    }
-                    d4.Add((int.Parse(d1[v].ToString())*int.Parse(d2[i].ToString())).ToString()+az);
-                }
-                for(int n =0;n<d4.Count;n++){
-                    if(n!=0){
-                        d3[i]+=ca.Add(d3[i],d4[n]);
-                    }
-                    else{
-                        d3.Add(d4[n]);
-                    }
-                }
-                d3[i]+=z;
             }
-            for(int i =0;i<d3.Count-1;i++){
-                value=ca.Add(value,d3[i]);
+            string aten;
+            int g=0,x=0;
+            for(int i=0;i<date3.Length;i++){
+                aten = "";
+                for(int d=0;d<g;d++){
+                    aten +="0";
+                }
+                value = this.Add(value,date3[i].ToString()+aten);
+                x++;
+                if(x>=d1.Length-1){
+                    x=0;
+                    g++;
+                }
             }
             return value;
         }

@@ -121,8 +121,8 @@ namespace MathString
                         break;
                     }
                 }
-                d1=date1.ToCharArray().OrderByDescending(x=>x).ToArray();
-                d2=date2.ToCharArray().OrderByDescending(x=>x).ToArray();
+                Array.Reverse(d1);
+                Array.Reverse(d2);
                 char[] d3 = new char[d1.Length];
                 for(int i = 0;i<d3.Length;i++){
                     d3[i] = '0';
@@ -147,7 +147,7 @@ namespace MathString
                         }
                         d3[i] = Convert.ToChar(date3.ToString());
                     }
-                    d3 = d3.OrderByDescending(x=>x).ToArray();
+                    Array.Reverse(d3);
                     value = new string(d3);
                 }else{
                     bool stack = false;
@@ -167,13 +167,13 @@ namespace MathString
                         }
                         d3[i] = Convert.ToChar(date3.ToString());
                     }
-                    d3=d3.OrderByDescending(x=>x).ToArray();
+                    Array.Reverse(d3);
                     value = "-"+new string(d3);
                 }
             }
             if(d1.Length>d2.Length){
-                d1=date1.ToCharArray().OrderByDescending(x=>x).ToArray();
-                d2=date2.ToCharArray().OrderByDescending(x=>x).ToArray();
+                Array.Reverse(d1);
+                Array.Reverse(d2);
                 char[] d3 = new char[d1.Length];
                 bool stack = false;
                 int date3 = 0;
@@ -194,7 +194,6 @@ namespace MathString
                     }else{
                         if(!stack){
                             date3 = Convert.ToInt32(d1[i]);
-                            Console.WriteLine(d1[i]);
                         }
                         else{
                             date3 = (Convert.ToInt32(d1[i])-1);
@@ -207,7 +206,7 @@ namespace MathString
                     }
                     d3[i] = Convert.ToChar(date3.ToString());
                 }
-                d3 = d3.OrderByDescending(x=>x).ToArray();
+                Array.Reverse(d3);
                 value = new string(d3);
             }
             if(d1.Length<d2.Length){

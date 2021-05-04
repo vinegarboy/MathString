@@ -135,10 +135,10 @@ namespace MathString
                     for(int i=0;i<d1.Length;i++){
                         date3 = 0;
                         if(!stack){
-                            date3 = Convert.ToInt32(d1[i])-Convert.ToInt32(d2[i]);
+                            date3 = Convert.ToInt32(d1[i].ToString())-Convert.ToInt32(d2[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d1[i])-1)-Convert.ToInt32(d2[i]);
+                            date3 = (Convert.ToInt32(d1[i].ToString())-1)-Convert.ToInt32(d2[i].ToString());
                             stack = false;
                         }
                         if(0>date3){
@@ -148,6 +148,14 @@ namespace MathString
                         d3[i] = Convert.ToChar(date3.ToString());
                     }
                     Array.Reverse(d3);
+                    for(int i =0;i<d3.Length;i++){
+                        if(d3[i]=='0'){
+                            d3[i] = 'X';
+                        }
+                        else{
+                            break;
+                        }
+                    }
                     value = new string(d3);
                 }else{
                     bool stack = false;
@@ -155,10 +163,10 @@ namespace MathString
                     for(int i=0;i<d1.Length;i++){
                         date3 = 0;
                         if(!stack){
-                            date3 = Convert.ToInt32(d2[i])-Convert.ToInt32(d1[i]);
+                            date3 = Convert.ToInt32(d2[i].ToString())-Convert.ToInt32(d1[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d2[i])-1)-Convert.ToInt32(d1[i]);
+                            date3 = (Convert.ToInt32(d2[i].ToString())-1)-Convert.ToInt32(d1[i].ToString());
                             stack = false;
                         }
                         if(0>date3){
@@ -168,6 +176,14 @@ namespace MathString
                         d3[i] = Convert.ToChar(date3.ToString());
                     }
                     Array.Reverse(d3);
+                    for(int i =0;i<d3.Length;i++){
+                        if(d3[i]=='0'){
+                            d3[i] = 'X';
+                        }
+                        else{
+                            break;
+                        }
+                    }
                     value = "-"+new string(d3);
                 }
             }
@@ -181,10 +197,10 @@ namespace MathString
                     date3 = 0;
                     if(i<d2.Length){
                         if(!stack){
-                            date3 = Convert.ToInt32(d1[i])-Convert.ToInt32(d2[i]);
+                            date3 = Convert.ToInt32(d1[i].ToString())-Convert.ToInt32(d2[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d1[i])-1)-Convert.ToInt32(d2[i]);
+                            date3 = (Convert.ToInt32(d1[i].ToString())-1)-Convert.ToInt32(d2[i].ToString());
                             stack = false;
                         }
                         if(0>date3){
@@ -193,10 +209,10 @@ namespace MathString
                         }
                     }else{
                         if(!stack){
-                            date3 = Convert.ToInt32(d1[i]);
+                            date3 = Convert.ToInt32(d1[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d1[i])-1);
+                            date3 = (Convert.ToInt32(d1[i].ToString())-1);
                             stack = false;
                         }
                         if(0>date3){
@@ -207,20 +223,30 @@ namespace MathString
                     d3[i] = Convert.ToChar(date3.ToString());
                 }
                 Array.Reverse(d3);
+                for(int i =0;i<d3.Length;i++){
+                        if(d3[i]=='0'){
+                            d3[i] = 'X';
+                        }
+                        else{
+                            break;
+                        }
+                    }
                 value = new string(d3);
             }
             if(d1.Length<d2.Length){
+                Array.Reverse(d1);
+                Array.Reverse(d2);
                 bool stack = false;
                 char[] d3 = new char[d2.Length];
                 int date3 = 0;
-                for(int i=0;i<d1.Length;i++){
+                for(int i=0;i<d2.Length;i++){
                     date3 = 0;
                     if(i<d1.Length){
                         if(!stack){
-                            date3 = Convert.ToInt32(d2[i])-Convert.ToInt32(d1[i]);
+                            date3 = Convert.ToInt32(d2[i].ToString())-Convert.ToInt32(d1[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d2[i])-1)-Convert.ToInt32(d1[i]);
+                            date3 = (Convert.ToInt32(d2[i].ToString())-1)-Convert.ToInt32(d1[i].ToString());
                             stack = false;
                         }
                         if(0>date3){
@@ -229,10 +255,10 @@ namespace MathString
                         }
                     }else{
                         if(!stack){
-                            date3 = Convert.ToInt32(d2[i]);
+                            date3 = Convert.ToInt32(d2[i].ToString());
                         }
                         else{
-                            date3 = (Convert.ToInt32(d2[i])-1);
+                            date3 = (Convert.ToInt32(d2[i].ToString())-1);
                             stack = false;
                         }
                         if(0>date3){
@@ -242,9 +268,18 @@ namespace MathString
                     }
                     d3[i] = Convert.ToChar(date3.ToString());
                 }
-                d3=d3.OrderByDescending(x=>x).ToArray();
+                Array.Reverse(d3);
+                for(int i =0;i<d3.Length;i++){
+                        if(d3[i]=='0'){
+                            d3[i] = 'X';
+                        }
+                        else{
+                            break;
+                        }
+                    }
                 value = "-"+new string(d3);
             }
+            value = value.Replace("X","");
             return value;
         }
         public string Multiplication(string date1,string date2){

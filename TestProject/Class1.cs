@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using System;
 
 namespace MathString
@@ -107,79 +108,143 @@ namespace MathString
             return ab;
         }
         public string Subtraction(string date1,string date2){
-            string value ="";
-            if(date1.Length==date2.Length){
-                int hl = 0;//0 =,1 high,2 low
-                for(int i =date1.Length-1;i>=0;i--){
-                    if(int.Parse(date1[i].ToString())!=int.Parse(date2[i].ToString())){
-                        if(int.Parse(date1[i].ToString())>int.Parse(date2[i].ToString())){
-                            hl=1;
-                            break;
-                        }else if(int.Parse(date1[i].ToString())<int.Parse(date2[i].ToString())){
-                            hl=2;
-                            break;
+            string value="";
+            char[] d1=date1.ToCharArray(),d2=date2.ToCharArray();
+            if(d1.Length==d2.Length){
+                int hl =0;
+                for(int i =0;i<d1.Length;i++){
+                    if(Convert.ToInt32(d1[i])>Convert.ToInt32(d2[i])){
+                        hl=1;
+                        break;
+                    }else if(Convert.ToInt32(d1[i])<Convert.ToInt32(d2[i])){
+                        hl=2;
+                        break;
+                    }
+                }
+                d1=date1.ToCharArray().OrderByDescending(x=>x).ToArray();
+                d2=date2.ToCharArray().OrderByDescending(x=>x).ToArray();
+                char[] d3 = new char[d1.Length];
+                for(int i = 0;i<d3.Length;i++){
+                    d3[i] = '0';
+                }
+                if(hl==0){
+                    value="0";
+                }else if(hl==1){
+                    bool stack = false;
+                    int date3 = 0;
+                    for(int i=0;i<d1.Length;i++){
+                        date3 = 0;
+                        if(!stack){
+                            date3 = Convert.ToInt32(d1[i])-Convert.ToInt32(d2[i]);
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d1[i])-1)-Convert.ToInt32(d2[i]);
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
+                        }
+                        d3[i] = Convert.ToChar(date3.ToString());
+                    }
+                    d3 = d3.OrderByDescending(x=>x).ToArray();
+                    value = new string(d3);
+                }else{
+                    bool stack = false;
+                    int date3 = 0;
+                    for(int i=0;i<d1.Length;i++){
+                        date3 = 0;
+                        if(!stack){
+                            date3 = Convert.ToInt32(d2[i])-Convert.ToInt32(d1[i]);
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d2[i])-1)-Convert.ToInt32(d1[i]);
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
+                        }
+                        d3[i] = Convert.ToChar(date3.ToString());
+                    }
+                    d3=d3.OrderByDescending(x=>x).ToArray();
+                    value = "-"+new string(d3);
+                }
+            }
+            if(d1.Length>d2.Length){
+                d1=date1.ToCharArray().OrderByDescending(x=>x).ToArray();
+                d2=date2.ToCharArray().OrderByDescending(x=>x).ToArray();
+                char[] d3 = new char[d1.Length];
+                bool stack = false;
+                int date3 = 0;
+                for(int i = 0;i<d1.Length;i++){
+                    date3 = 0;
+                    if(i<d2.Length){
+                        if(!stack){
+                            date3 = Convert.ToInt32(d1[i])-Convert.ToInt32(d2[i]);
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d1[i])-1)-Convert.ToInt32(d2[i]);
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
+                        }
+                    }else{
+                        if(!stack){
+                            date3 = Convert.ToInt32(d1[i])-0;
+                            Console.WriteLine(d1[i]);
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d1[i])-1)-0;
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
                         }
                     }
+                    d3[i] = Convert.ToChar(date3.ToString());
                 }
-                char[] d1 = date1.ToCharArray(),d2 = date2.ToCharArray();
-                string[] d3 = new string[d1.Length];
-                if(hl==1){
-                    for(int i=0;i<date1.Length;i++){
-                        d3[i] = $"{int.Parse(d1[i].ToString())-int.Parse(d2[i].ToString())}";
-                    }
-                    value = d3.ToString();
-                }else if(hl==2){
-                    for(int i=0;i<date1.Length;i++){
-                        d3[i] = $"{int.Parse(d2[i].ToString())-int.Parse(d1[i].ToString())}";
-                    }
-                    value = d3.ToString();
-                }else{
-                    value="0";
-                }
-            }else if(date1.Length>date2.Length){
-                int sa = date1.Length-date2.Length;
-                char[] d1 = date1.ToCharArray(),d2 = new char[d1.Length];
-                d1=date1.ToCharArray();
-                for(int i = 0;i<date1.Length;i++){
-                    if(sa>=i+1){
-                        d2[i] ='0';
+                d3 = d3.OrderByDescending(x=>x).ToArray();
+                value = new string(d3);
+            }
+            if(d1.Length<d2.Length){
+                bool stack = false;
+                char[] d3 = new char[d2.Length];
+                int date3 = 0;
+                for(int i=0;i<d1.Length;i++){
+                    date3 = 0;
+                    if(i<d1.Length){
+                        if(!stack){
+                            date3 = Convert.ToInt32(d2[i])-Convert.ToInt32(d1[i]);
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d2[i])-1)-Convert.ToInt32(d1[i]);
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
+                        }
                     }else{
-                        d2[i] = date2.ToCharArray()[i];
+                        if(!stack){
+                            date3 = Convert.ToInt32(d2[i])-0;
+                        }
+                        else{
+                            date3 = (Convert.ToInt32(d2[i])-1)-0;
+                            stack = false;
+                        }
+                        if(0>date3){
+                            stack=true;
+                            date3+=10;
+                        }
                     }
+                    d3[i] = Convert.ToChar(date3.ToString());
                 }
-                for(int i=0;i<date1.Length;i++){
-                        value += $"{int.Parse(d1[i].ToString())-int.Parse(d2[i].ToString())}";
-                }
-            }else if(date1.Length<date2.Length){
-                int sa = date2.Length-date1.Length;
-                char[] d2 = date2.ToCharArray(),d1 = new char[d2.Length];
-                d2=date2.ToCharArray();
-                for(int i =0;i<date2.Length;i++){
-                    if(sa>=i+1){
-                        d1[i] = '0';
-                    }
-                    else{
-                        d1[i] = date1.ToCharArray()[i-sa];
-                    }
-                }
-                for(int i=0;i<date2.Length;i++){
-                    int giv = int.Parse(d2[i].ToString())-int.Parse(d1[i].ToString());
-                    if(giv==0){
-                        value+=$"0";
-                        Console.WriteLine(value);
-                    }else if(giv<0){
-                        value+="0";
-                        char[] _v = value.ToCharArray();
-                        _v[i-1] = Convert.ToChar(int.Parse(_v[i-1].ToString())-1);
-                        _v[i] = Convert.ToChar(10+giv);
-                        value = new string(_v);
-                        Console.WriteLine(value);
-                    }else{
-                        value+= $"{giv}";
-                        Console.WriteLine(value);
-                    }
-                }
-                value = "-"+value;
+                d3=d3.OrderByDescending(x=>x).ToArray();
+                value = "-"+new string(d3);
             }
             return value;
         }

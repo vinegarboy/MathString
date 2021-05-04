@@ -166,14 +166,17 @@ namespace MathString
                     int giv = int.Parse(d2[i].ToString())-int.Parse(d1[i].ToString());
                     if(giv==0){
                         value+=$"0";
+                        Console.WriteLine(value);
                     }else if(giv<0){
                         value+="0";
                         char[] _v = value.ToCharArray();
                         _v[i-1] = Convert.ToChar(int.Parse(_v[i-1].ToString())-1);
                         _v[i] = Convert.ToChar(10+giv);
                         value = new string(_v);
+                        Console.WriteLine(value);
                     }else{
                         value+= $"{giv}";
+                        Console.WriteLine(value);
                     }
                 }
                 value = "-"+value;

@@ -306,5 +306,8 @@ namespace MathString
             }
             return value;
         }
+        public string Division(string date1,string date2){
+
+        }
     }
 }

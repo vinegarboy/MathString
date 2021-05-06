@@ -307,7 +307,53 @@ namespace MathString
             return value;
         }
         public string Division(string date1,string date2){
-
+            char[] d1=date1.ToCharArray(),d2=date2.ToCharArray();
+            bool che = false,ama=false,ama2=false;
+            int _ama=0,_ama2=0;
+            while(!che){
+                if(int.Parse(d1[d1.Length-1].ToString())%2==0||int.Parse(d2[d2.Length-1].ToString())%2==0){
+                    for(int i = 0;i<d1.Length;i++){
+                        if(!ama){
+                            if(int.Parse(d1[i].ToString())%2!=0){
+                                ama=true;
+                                _ama=int.Parse(d1[i].ToString())%2;
+                            }
+                            d1[i] = Convert.ToChar((int.Parse(d1[i].ToString())/2).ToString());
+                        }else{
+                            if((int.Parse(d1[i].ToString())+(_ama*10))%2!=0){
+                                ama=true;
+                                _ama=(int.Parse(d1[i].ToString())+(_ama*10))%2;
+                            }else{
+                                ama=false;
+                            }
+                            d1[i] = Convert.ToChar(((int.Parse(d1[i].ToString())+(_ama*10))/2).ToString());
+                            if(ama){
+                                _ama=0;
+                            }
+                        }
+                    }
+                    for(int i = 0;i<d2.Length;i++){
+                        if(!ama2){
+                            if(int.Parse(d2[i].ToString())%2!=0){
+                                ama2=true;
+                                _ama2=int.Parse(d2[i].ToString())%2;
+                            }
+                            d2[i] = Convert.ToChar((int.Parse(d2[i].ToString())/2).ToString());
+                        }else{
+                            if((int.Parse(d2[i].ToString())+(_ama2*10))%2!=0){
+                                ama2=true;
+                                _ama2=(int.Parse(d2[i].ToString())+(_ama2*10))%2;
+                            }else{
+                                ama2=false;
+                            }
+                            d2[i] = Convert.ToChar(((int.Parse(d2[i].ToString())+(_ama2*10))/2).ToString());
+                            if(ama2){
+                                _ama2=0;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

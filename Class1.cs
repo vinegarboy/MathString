@@ -311,7 +311,7 @@ namespace MathString
             bool che = false,ama=false,ama2=false;
             int _ama=0,_ama2=0;
             while(!che){
-                if(int.Parse(d1[d1.Length-1].ToString())%2==0||int.Parse(d2[d2.Length-1].ToString())%2==0){
+                if(int.Parse(d1[d1.Length-1].ToString())%2==0&&int.Parse(d2[d2.Length-1].ToString())%2==0){
                     for(int i = 0;i<d1.Length;i++){
                         if(!ama){
                             if(int.Parse(d1[i].ToString())%2!=0){
@@ -352,6 +352,8 @@ namespace MathString
                             }
                         }
                     }
+                }else{
+                    che=true;
                 }
             }
         }
